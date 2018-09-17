@@ -1,0 +1,14 @@
+		## Creating an Ansible Inventory ##
+		###################################
+
+# Task 1 - Create a seperate work directory and create a file named "inventory"
+
+# Task 2 - Define two groups "dev" and "web"
+	a)	Make sure "node1" and "node2" hosts are part of "dev" group
+	b)	Make sure "node2" and "node3" are part of "web" group
+
+# Task 3 - Verify the inventory file
+	a)	List the hosts in dev group and web group.
+
+	Optionally, You can run verify_inventory.py
+	b)	./verify_inventory.py
