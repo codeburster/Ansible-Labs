@@ -1,0 +1,21 @@
+		## Solution to Installing and Configuring Ansible on Linux ##
+		#############################################################
+
+# Task 1 -
+	# yum install ansible
+
+# If working with RHEL and have subscription then :
+	a)	Register machine :
+		- subscription-manager register
+		: Enter username & Password when prompted
+
+	b)	Attach it to pool of Repos :
+		- subscription-manager attach --pool=<POOL_ID>
+
+	c)	Enable Repository :
+		- subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
+
+	d)	Verify installation :
+		- ansible version
+		
+	e) 	Optinally, you can execute verify_installation.sh

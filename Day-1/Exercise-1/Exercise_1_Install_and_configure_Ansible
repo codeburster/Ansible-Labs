@@ -1,0 +1,7 @@
+		# Setting Up Lab Environment #
+		##############################
+
+# TASK 1 - Install and Configure Ansible from repository with dependencies.
+
+## Ref. Links
+	a)	https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#latest-release-via-dnf-or-yum
