@@ -1,0 +1,10 @@
+		## Configure Ansible ##
+		#######################
+
+# Task 1 - Write the Ansible configuration file as follows :
+	a) The default /etc/ansible/ansible.cfg configuration is overridden by your own ansible.cfg
+	b) Configure it to automatically use sudo to switch from local user to root
+	c) Also configure it to prompt for sudo password
+
+# Task 2 - Try to ping all hosts by using ping module
+	a) ansible <tageted hosts> -m ping

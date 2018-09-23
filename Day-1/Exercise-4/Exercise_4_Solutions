@@ -1,0 +1,15 @@
+		## Practice Ad-Hoc Commands ##
+                #######    Solutions   #######	
+
+
+# Task 1 -
+	a) ansible dev -m user -a 'name=devuser uid=3001 shell=/sbin/nologin state=present'
+	b) ansible web -m user -a 'name=webuser uid=2002 comment="This is a web user" state=present'
+
+# Task 2 -
+	a) ansible all -m command -a hostname
+	b) ansible all -m command -a set	## Must throw error : No such file or directory
+	c) ansible all -m shell -a set		## Must be success : A valid output
+
+# Task 3 -
+	a) ansible all -m copy -a 'content="This host is managed by Ansible. Any changes will be discarded." dest=/etc/motd

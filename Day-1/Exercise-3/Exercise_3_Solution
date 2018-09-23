@@ -1,0 +1,18 @@
+		## Creating an Ansible Configuration ##
+		#########     Solutions       #########
+
+# Task 1 -
+	$ cd ~/My-Work-Dir
+	$ cat ansible.cfg
+
+	[defaults]
+	inventory= ./inventory
+
+	[privilege_escalation]
+	become= true
+	become_method= sudo
+	become_user= root
+	become_ask_pass= true
+
+# Task 2 -
+	a) ansible all -m ping

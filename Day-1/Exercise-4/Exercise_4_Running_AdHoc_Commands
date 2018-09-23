@@ -1,0 +1,18 @@
+		## Practice Ad-Hoc Commands ##
+		##############################
+
+# Task 1 - Create a user with following requirements :
+	a) User named "devuser" with uid=3001 and with /sbin/nologin shell assigned to it on dev hosts
+	b) Web hosts should have a user named "webuser" with uid=2002 and with comments as "This is a web user"
+
+# Task 2 - Know the difference between command and shell module:
+	a) Get the hostname of all managed hosts by running hostname command using command module.
+	b) Run some shell built-in command like 'set' on all managed hosts using command module.
+	c) If (b) doesn't work, try with shell module.
+
+# Task 3 - Using copy module in Ad-Hoc Commands:
+ 	a) Write the following contents in /etc/motd file on all managed hosts.
+		"This host is managed by Ansible. Any changes will be discarded."
+
+
+## Conclusion, The difference between two should be clear. ##
