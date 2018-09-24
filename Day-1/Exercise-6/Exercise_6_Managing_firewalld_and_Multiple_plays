@@ -1,0 +1,25 @@
+		## Managing Firewalld and Practice Writing Multiple Plays ##
+		############################################################
+
+# Task 1 - Create new project directory named "Multiple_Plays" in your home directory
+
+# Task 2 - Create new ansible configuration such as done in previous exercise. You can also copy to save time.
+
+# Task 3 - Create inventory file as follows :
+	a) webserver group contains host1.example.com
+	b) dbserver group contains host2.example.com
+
+# Task 4 - Create playbook named "Multiple_plays.yml" :
+	a) Ensure latest version of httpd and firewalld packages is installed on hosts grouped under webserver.
+	b) Ensure firewalld and httpd services is enabled and started
+	c) Make sure firewalld allow http connections.
+	d) Make sure the file /var/www/html/index.html in managed hosts contains "Welcome, Ansible is awesome."
+
+# Task 5 - Extend the Multiple_plays.yml to add following things :
+	a) Ensure latest version of mariadb-server and firewalld packages is installed on hosts under dbserver.
+	b) Ensure firewalld and mysql services are enabled and started.
+	c) Make sure firewalld allows connection to mariadb service.
+
+# Task 6 - Extend your playbook to "Verify your webserver" :
+	a) This just requires verifying webserver which can be done using URI module and checking status code 200.
+	b) This task should not require privilege escalation. 

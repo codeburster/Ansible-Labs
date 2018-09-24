@@ -1,0 +1,63 @@
+---
+- name: Firewall and Webserver configuration
+  hosts: webserver
+  tasks:
+    - name: latest version of firewalld and httpd
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+    - name: Firewalld is enabled and running
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: Httpd is enabled and running7
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: http connection is allowed in firewalld
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+    - name: test index.html page is installed
+      copy:
+        content: "Welcome, Ansible is awesome.\n"
+        dest: /var/www/html/index.html
+- name: firewall and database server configuration
+  hosts: dbserver
+  tasks:
+    - name: latest version of firewalld and mariadb-server
+      yum:
+        name:
+          - firewalld
+          - mariadb-server
+        state: latest
+    - name: Enable and start firewalld
+      service:
+        name: firewalld
+        enabled: true
+        state: started
+    - name: Enable and start mariadb
+      service:
+        name: mariadb
+        enabled: true
+        state: started
+    - name: mariadb connection is allow in firewall config
+      firewalld:
+        service: mysql
+        permanent: true
+        state: enabled
+        immediate: yes
+- name: Verify webserver
+  hosts: localhost
+  become: no
+  tasks:
+    - name: check connection with webserver
+      uri:
+        url: http://192.168.122.249
+        status_code: 200

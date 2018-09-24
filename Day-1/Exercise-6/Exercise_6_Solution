@@ -1,0 +1,96 @@
+		## Managing Firewalld and Practice Writing Multiple Plays ##
+                ###################     Solution     #######################
+
+# Task 1 -
+	$ mkdir ~/Multiple_Plays
+	$ cd ~/Multiple_Plays
+
+# Task 2 -
+	$ cat ansible.cfg
+		[defaults]
+		inventory = ./inventory
+
+		[privilege_escalation]
+		become = true
+		become_method = sudo
+		become_user = root
+		become_ask_pass = false 
+
+# Task 3 -
+	$ cat inventory
+		[webserver]
+		host1.example.com
+		[dbserver]
+		host2.example.com
+
+# Task 4 -
+	$ cat Multiple_plays.yml
+		---
+		- name: Firewall and Webserver configuration
+		  hosts: webserver
+		  tasks:
+		    - name: latest version of firewalld and httpd
+		      yum:
+			name:
+			  - httpd
+			  - firewalld
+			state: latest
+		    - name: Firewalld is enabled and running
+		      service:
+			name: firewalld
+			state: started
+			enabled: true
+		    - name: Httpd is enabled and running
+		      service:
+			name: httpd
+			state: started
+			enabled: true
+		    - name: http connection is allowed in firewalld
+		      firewalld:
+			service: http
+			permanent: true
+			state: enabled
+			immediate: yes
+		    - name: test index.html page is installed
+		      copy:
+			content: "Welcome, Ansible is awesome.\n"
+			dest: /var/www/html/index.html
+
+# Task 5 -
+	$ cat Multiple_plays.yml		--> Continuation of above contents.
+		- name: firewall and database server configuration
+		  hosts: dbserver
+		  tasks:
+		    - name: latest version of firewalld and mariadb-server
+		      yum:
+			name:
+			  - firewalld
+			  - mariadb-server
+			state: latest
+		    - name: Enable and start firewalld service
+		      service:
+			name: firewalld
+			enabled: true
+			state: started
+		    - name: Enable and start mariadb service
+		      service:
+			name: mariadb
+			enabled: true
+			state: started
+		    - name: mariadb connection is allow in firewall config
+		      firewalld:
+			service: mysql
+			permanent: true
+			state: enabled
+			immediate: yes
+
+# Task 6 -
+        $ cat Multiple_plays.yml                --> Continuation of above contents.
+		- name: Verify webserver
+		  hosts: localhost
+		  become: no
+		  tasks:
+		    - name: check connection with webserver
+		      uri:
+			url: http://host1.example.com
+			status_code: 200

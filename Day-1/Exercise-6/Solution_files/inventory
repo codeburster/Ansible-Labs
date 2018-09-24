@@ -1,0 +1,4 @@
+[webserver]
+host1.example.com
+[dbserver]
+host2.example.com
