@@ -12,7 +12,7 @@
 
 # Task 3 - Using copy module in Ad-Hoc Commands:
  	a) Write the following contents in /etc/motd file on all managed hosts.
-		"This host is managed by Ansible. Any changes will be discarded."
+		"This host is managed by Ansible. Any changes will be discarded.\n"
 
 
 ## Conclusion, The difference between two should be clear. ##

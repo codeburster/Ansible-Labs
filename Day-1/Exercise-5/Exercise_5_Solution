@@ -1,0 +1,51 @@
+		## Create and Run Simple Playbook ##
+		#########     Solutions     ########
+
+# Task 1 -
+	$ mkdir ~/Simple-Playbook
+	$ cd ~/Simple-Playbook
+
+# Task 2 -
+	a) $ cat ansible.cfg
+		[defaults]
+		inventory = ./inventory
+
+		[privilege_escalation]
+		become = true
+		become_method = sudo
+		become_user = root
+		become_ask_pass = false
+
+# Task 3 -
+	a) $ cat inventory
+		[webserver]
+		host1.example.com
+		host2.example.com
+
+# Task 4 -
+	a) mkdir files
+	c) echo "This website has been deployed by Ansible." > files/index.html
+
+	   cat deploy_site.yml
+	   
+	   ---
+	   - name: Install and start Apache HTTPD
+	     hosts: webserver
+
+	     tasks:
+    	       - name: httpd package is present
+	           yum:
+        	     name: httpd
+		     state: present
+    	       - name: Correct index.html is present
+      		   copy:
+        	     src: files/index.html
+        	     dest: /var/www/html/index.html
+	       - name: httpd is started and enabled
+      		   service:
+        	     name: httpd
+        	     state: started
+        	     enabled: true
+
+
+# Note - For your convenience all the files used in this exercise are provided in Solutions_files directory.

@@ -1,0 +1,20 @@
+		## Create and Run Simple Playbook ##
+		####################################
+
+# Task 1 - Create a new working directory "Simple-Playbook" in your Home Directory :
+
+# Task 2 - Create a new ansible configuration file as follows :
+	a) The inventory file should be used from Simple-Playbook directory.
+	b) Configure it to automatically use sudo to switch from local user to root.
+	c) Should not ask for password.
+
+# Task 3 - Create an inventory to include both hosts under "webserver" group.
+
+# Task 4 - Create a playbook with following requirements :
+	a) Name of playbook should be "deploy_site.yml"
+	b) Ensure "httpd" package is installed, using the yum module.
+	c) Create a "~/Simple-Playbook/files/index.html" file that contains following text :
+		"This website has be deployed by ansible."
+	d) Local file 'files/index.html' is copied to '/var/www/html/index.html' on each managed host, using copy module.
+	e) Ensure 'httpd' service is started and enabled, using service module.
+
