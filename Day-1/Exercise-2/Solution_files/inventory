@@ -1,6 +1,6 @@
-[dev]
+[dev1]
 node1.example.com
 node2.example.com
-[web]
+[web1]
 node2.example.com
 node3.example.com
