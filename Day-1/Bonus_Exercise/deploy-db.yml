@@ -1,0 +1,46 @@
+---
+- name: Deploy DataBase
+  hosts: dbserver
+  become: yes
+  tasks:
+    - name: Ensure latest mariadb-server and firewalld package is installed.
+      yum:
+        name: 
+          - mariadb-server
+          - firewalld
+        state: latest
+    - name: Ensure mariadb service is enabled and running.
+      service:
+        name: mariadb
+        state: started
+        enabled: true
+    - name: Ensure firewalld service is enabled and running.
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: Ensure mariadb service is reachable over the network
+      firewalld:
+        service: mysql
+        state: enabled
+        permanent: true
+        immediate: yes
+    - name: Setting root user password
+      mysql_user:
+        name: root
+        password: 'ansible'
+        login_user: root
+        login_password: 'ansible123'
+        state: present
+    - name: syncronize database backup file to remote host
+      synchronize:
+        src: data/init.sql
+        dest: /tmp/init.sql
+
+    - name: Create and configure database
+      mysql_db:
+        name: test
+        state: import
+        target: /tmp/init.sql
+        login_user: root
+        login_password: 'ansible'        

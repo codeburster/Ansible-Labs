@@ -1,0 +1,33 @@
+---
+- name: Deploy PHP Application
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Ensure latest httpd, php and firewalld package is installed.
+      yum:
+        name: 
+          - httpd
+          - php
+          - firewalld
+        state: latest
+    - name: Ensure httpd service is enabled and running.
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: Ensure firewalld service is enabled and running.
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: Ensure httpd service is reachable over the network
+      firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: yes
+    - name: syncronize PHP application files to remote host
+      synchronize:
+        src: pdo/
+        dest: /var/www/html/
+        recursive: yes
