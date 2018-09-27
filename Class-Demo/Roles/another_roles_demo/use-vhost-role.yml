@@ -1,0 +1,15 @@
+---
+- name: use vhost role
+  hosts: webserver
+  become: yes
+
+  post_tasks:
+    - debug:
+        msg: "Webserver has been configured"
+
+  roles:
+    - myvhost
+
+  pre_tasks:
+    - debug:
+        msg: "Beginning webserver configuration"
