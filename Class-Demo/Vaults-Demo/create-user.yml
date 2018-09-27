@@ -1,0 +1,12 @@
+---
+- name: Ansible vaults in playbook
+  hosts: webserver
+  become: yes
+  vars_files:
+    - secret.yml
+  tasks:
+    - name: Creating Users
+      user:
+        name: "{{ item.name }}"
+        password: "{{ item.pw | password_hash('sha512')}}"
+      with_items: "{{ newusers }}"
