@@ -1,0 +1,9 @@
+---
+- name: Checking my custom helloworld module
+  hosts: localhost
+  tasks:
+    - name: Test if my module works
+      hello_world:
+      register: result
+    - debug:
+        msg: "{{ result }}"
