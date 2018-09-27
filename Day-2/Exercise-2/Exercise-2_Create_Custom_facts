@@ -1,0 +1,6 @@
+
+Tasks - 1 : Practice creating custom facts as follows.
+	a) create custom facts for webservers and dbservers.
+	b) create facts for that define packages for dbservers and webservers.
+
+Task - 2 : Create a playbook that defines these facts on webservers and dbservers.

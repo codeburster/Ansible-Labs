@@ -1,0 +1,10 @@
+
+Task 1 - Define variables for in an external file as follows:
+	a) contains list of packages
+	b) contains few application directories to be created
+
+Task 2 - Create an external task files.
+	a) should install packages from variabls
+	b) create directory as specified in the variable file.
+
+Task 3 - create a playbook that includes both variable and task files and does the task.

@@ -1,0 +1,20 @@
+		## Managing Variables ##
+		########################
+Note: This work should be done in ~/dev-vars-playbook
+
+Task 1 - Create a playbook that does following things :
+	a) Installs apache webserver
+	b) Opens ports for the service to be reachable
+	c) It must query web server to ensure its up and running
+
+Task 2 - Make use of following variables in playbook:
+	web_pkg: httpd
+	firewall_pkg: firewalld
+	web_service: httpd
+	firewall_service: firewalld
+	python_pkg: python-httplib2
+	rule: http
+
+Task 3 - Also add a task to put "This is variables exercise" in /var/www/html/index.html
+
+Task 4 - Spend 15 Minutes to minutes define variables in different ways as discussed during discussion.
