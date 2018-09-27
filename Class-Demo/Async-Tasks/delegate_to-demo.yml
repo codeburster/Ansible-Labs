@@ -1,0 +1,19 @@
+---
+- name: delegate_to:localhost example
+  hosts: webserver
+  tasks:
+    - name: Get process info from managed host
+      command: ps
+      register: remote_process
+      changed_when: false
+    - name: Display information on managed host processes
+      debug:
+        msg: "{{ remote_process.stdout }}"
+    - name: Get info about localhost processes
+      local_action: command ps
+#      delegate_to: localhost
+      register: local_process
+      changed_when: false
+    - name: Display info on localhost processes
+      debug:
+        msg: "{{ local_process.stdout }}"
