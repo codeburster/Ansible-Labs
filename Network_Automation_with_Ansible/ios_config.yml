@@ -1,0 +1,17 @@
+---
+- name: Demo for ios_command module for Cisco IOS Devices
+  hosts: router1
+  gather_facts: no
+  connection: network_cli
+  tasks:
+  - name: Run multiple ios commands
+    ios_config:        # module
+      save_when: modified
+      lines:
+        - hostname "{{ inventory_hostname }}"
+        - ip name-server 8.8.8.8
+        - no ip http server
+    register: output
+
+  - name: Verifying output
+    debug: var=output.stdout

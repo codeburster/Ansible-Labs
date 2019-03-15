@@ -1,0 +1,16 @@
+---
+- name: Demo for ios_command module for Cisco IOS Devices
+  hosts: router1
+  gather_facts: no
+  #connection: local
+  connection: network_cli
+  tasks:
+  - name: Run multiple ios commands
+    ios_command:        # module
+      commands:         # list of commands to run
+        - show version
+        - show ip int br
+    register: output
+
+  - name: Verifying output
+    debug: var=output.stdout_lines
