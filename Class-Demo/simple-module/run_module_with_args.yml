@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - module_with_args:
+      name: "codeburster"
+      scores: "{{ [1,2,3,4] }}"
+      #state: present
+    register: result
+  - debug:
+      msg: >
+        "{{ result }}"
